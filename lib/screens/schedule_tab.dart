@@ -41,8 +41,8 @@ class _ScheduleTabState extends State<ScheduleTab> {
     final numRows = shiftRows.length;
 
     const double timeAxisH = 36.0;
-    const double guestRowH = 92.0;
-    const double eventRowH = 92.0;
+    const double guestRowH = 130.0;
+    const double eventRowH = 130.0;
     const double shiftH = 44.0;
     const double leftLabelW = 72.0;
 
@@ -181,23 +181,25 @@ class _ScheduleTabState extends State<ScheduleTab> {
         borderRadius: BorderRadius.circular(4),
       ),
       padding: const EdgeInsets.fromLTRB(5, 4, 5, 4),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(name, style: AppStyles.mealHeading),
-          const SizedBox(height: 2),
-          Text('Preparation Time\n$prep', style: AppStyles.mealInfo),
-          Text('Serve Time\n$serve', style: AppStyles.mealInfo),
-          const SizedBox(height: 2),
-          Row(
-            children: [
-              GestureDetector(onTap: () {}, child: const Text('Menu', style: AppStyles.linkBlue)),
-              const SizedBox(width: 8),
-              GestureDetector(onTap: () {}, child: const Text('Live Counter', style: AppStyles.linkBlue)),
-            ],
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(name, style: AppStyles.mealHeading),
+            const SizedBox(height: 2),
+            Text('Preparation Time\n$prep', style: AppStyles.mealInfo),
+            Text('Serve Time\n$serve', style: AppStyles.mealInfo),
+            const SizedBox(height: 2),
+            Wrap(
+              spacing: 8,
+              children: [
+                GestureDetector(onTap: () {}, child: const Text('Menu', style: AppStyles.linkBlue)),
+                GestureDetector(onTap: () {}, child: const Text('Live Counter', style: AppStyles.linkBlue)),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -241,26 +243,28 @@ class _ScheduleTabState extends State<ScheduleTab> {
         borderRadius: BorderRadius.circular(4),
       ),
       padding: const EdgeInsets.fromLTRB(5, 4, 5, 4),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (event.eventName != null)
-            Text(event.eventName!, style: AppStyles.mealHeading.copyWith(fontSize: 10)),
-          Text(event.mealName, style: AppStyles.mealInfo.copyWith(fontSize: 8)),
-          if (event.prepTime != null)
-            Text('Preparation Time\n${event.prepTime}', style: AppStyles.mealInfo),
-          if (event.serveTime != null && event.serveTime != 'Live Counter')
-            Text('Serve Time\n${event.serveTime}', style: AppStyles.mealInfo),
-          const SizedBox(height: 2),
-          Row(
-            children: [
-              GestureDetector(onTap: () {}, child: const Text('Menu', style: AppStyles.linkBlue)),
-              const SizedBox(width: 6),
-              GestureDetector(onTap: () {}, child: const Text('Live Counter', style: AppStyles.linkBlue)),
-            ],
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (event.eventName != null)
+              Text(event.eventName!, style: AppStyles.mealHeading.copyWith(fontSize: 10)),
+            Text(event.mealName, style: AppStyles.mealInfo.copyWith(fontSize: 8)),
+            if (event.prepTime != null)
+              Text('Preparation Time\n${event.prepTime}', style: AppStyles.mealInfo),
+            if (event.serveTime != null && event.serveTime != 'Live Counter')
+              Text('Serve Time\n${event.serveTime}', style: AppStyles.mealInfo),
+            const SizedBox(height: 2),
+            Wrap(
+              spacing: 6,
+              children: [
+                GestureDetector(onTap: () {}, child: const Text('Menu', style: AppStyles.linkBlue)),
+                GestureDetector(onTap: () {}, child: const Text('Live Counter', style: AppStyles.linkBlue)),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
