@@ -6,7 +6,6 @@ class ScheduleVM {
   final List<EventMeal> eventMeals = MockData.eventMeals;
   final List<EmployeeShift> shifts = MockData.shifts;
 
-  // group shifts by rowIndex so we can render row by row
   Map<int, List<EmployeeShift>> get shiftRows {
     final map = <int, List<EmployeeShift>>{};
     for (var s in shifts) {

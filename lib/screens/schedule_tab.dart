@@ -16,20 +16,17 @@ class _ScheduleTabState extends State<ScheduleTab> {
   final _vm = ScheduleVM();
   final _scrollCtrl = ScrollController();
 
-  // each hour = 70px wide on the timeline
   static const double _hourW = 70.0;
-  static const double _startHr = 6.0; // 6am
-  static const double _endHr = 22.0; // 10pm
-  static const double _totalW = (_endHr - _startHr) * _hourW; // 1120px
+  static const double _startHr = 6.0;
+  static const double _endHr = 22.0;
+  static const double _totalW = (_endHr - _startHr) * _hourW;
 
-  // time labels to show on the axis
   static const List<String> _labels = [
     '6am', '7am', '8am', '9am', '10am', '11am',
     '12pm', '1pm', '2pm', '3pm', '4pm',
     '5pm', '6pm', '7pm', '8pm', '9pm', '10pm',
   ];
 
-  // converts hour (decimal 24hr) to x position on timeline
   double _x(double hour) => (hour - _startHr) * _hourW;
 
   @override
@@ -43,7 +40,6 @@ class _ScheduleTabState extends State<ScheduleTab> {
     final shiftRows = _vm.shiftRows;
     final numRows = shiftRows.length;
 
-    // heights for each section
     const double timeAxisH = 36.0;
     const double guestRowH = 92.0;
     const double eventRowH = 92.0;
@@ -58,7 +54,6 @@ class _ScheduleTabState extends State<ScheduleTab> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // fixed left column with section labels
             SizedBox(
               width: leftLabelW,
               child: Column(
@@ -72,13 +67,12 @@ class _ScheduleTabState extends State<ScheduleTab> {
                 ],
               ),
             ),
-            // scrollable timeline on the right
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 controller: _scrollCtrl,
                 child: SizedBox(
-                  width: _totalW + _hourW, // a bit of extra padding at the end
+                  width: _totalW + _hourW,
                   child: Column(
                     children: [
                       _buildTimeAxis(timeAxisH),
@@ -124,7 +118,6 @@ class _ScheduleTabState extends State<ScheduleTab> {
       height: h,
       child: Stack(
         children: [
-          // hour labels
           Row(
             children: _labels.map((label) {
               return SizedBox(
@@ -135,7 +128,6 @@ class _ScheduleTabState extends State<ScheduleTab> {
               );
             }).toList(),
           ),
-          // current time bubble - showing 06:43 AM
           Positioned(
             left: _x(6.72) - 14,
             top: 5,

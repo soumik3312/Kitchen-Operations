@@ -2,7 +2,7 @@ class MealPeriod {
   final String name;
   final String prepTime;
   final String serveTime;
-  final double startHour; // 24hr decimal, e.g. 6.5 = 6:30
+  final double startHour;
   final double endHour;
 
   const MealPeriod({
@@ -39,7 +39,7 @@ class EmployeeShift {
   final String role;
   final double startHour;
   final double durationHours;
-  final String label; // e.g. "3:45/8hour"
+  final String label;
   final int rowIndex;
 
   const EmployeeShift({

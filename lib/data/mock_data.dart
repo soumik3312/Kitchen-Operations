@@ -2,7 +2,6 @@ import '../models/shift.dart';
 import '../models/order.dart';
 import '../models/shelf_item.dart';
 
-// all the fake data lives here
 class MockData {
   static final List<MealPeriod> guestMeals = [
     const MealPeriod(
@@ -69,7 +68,6 @@ class MockData {
     ),
   ];
 
-  // shifts spread across rows 0-7
   static final List<EmployeeShift> shifts = [
     const EmployeeShift(empName: 'Rajeev Singh', role: 'Head Chef', startHour: 6.0, durationHours: 8.0, label: '3:45/8hour', rowIndex: 0),
     const EmployeeShift(empName: 'Rajeev Singh', role: 'Head Chef', startHour: 14.0, durationHours: 6.0, label: '3:45/8hour', rowIndex: 0),

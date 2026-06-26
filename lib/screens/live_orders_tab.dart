@@ -31,7 +31,6 @@ class _LiveOrdersTabState extends State<LiveOrdersTab> {
     );
   }
 
-  // top scrollable list of orders
   Widget _buildOrderList() {
     return SizedBox(
       height: 130,
@@ -130,23 +129,28 @@ class _LiveOrdersTabState extends State<LiveOrdersTab> {
     );
   }
 
-  // bottom section - order detail
   Widget _buildOrderDetail() {
     final order = _vm.current;
     return Column(
       children: [
-        // order info row
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.start,
             children: [
-              _infoCol('Order Id', order.orderId),
-              const SizedBox(width: 16),
-              _infoCol('Room', order.room),
-              const SizedBox(width: 16),
-              _infoCol('Order Status', order.status),
-              const Spacer(),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _infoCol('Order Id', order.orderId),
+                  const SizedBox(width: 16),
+                  _infoCol('Room', order.room),
+                  const SizedBox(width: 16),
+                  _infoCol('Order Status', order.status),
+                ],
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -165,7 +169,6 @@ class _LiveOrdersTabState extends State<LiveOrdersTab> {
           ),
         ),
         Container(height: 1, color: AppColors.borderColor),
-        // table column headers
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 10, 16, 6),
           child: Row(
@@ -179,7 +182,6 @@ class _LiveOrdersTabState extends State<LiveOrdersTab> {
           ),
         ),
         Container(height: 1, color: AppColors.borderColor),
-        // items list
         Expanded(
           child: ListView.separated(
             itemCount: order.items.length,
@@ -187,7 +189,6 @@ class _LiveOrdersTabState extends State<LiveOrdersTab> {
             itemBuilder: (ctx, i) => _itemRow(order.items[i], i),
           ),
         ),
-        // cancel all button
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
           child: Align(

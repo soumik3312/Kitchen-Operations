@@ -37,8 +37,13 @@ class _KitchenScreenState extends State<KitchenScreen> {
       padding: const EdgeInsets.fromLTRB(16, 14, 12, 4),
       child: Row(
         children: [
-          const Text('Kitchen Operations', style: AppStyles.screenTitle),
-          const Spacer(),
+          const Expanded(
+            child: Text(
+              'Kitchen Operations',
+              style: AppStyles.screenTitle,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           IconButton(
             icon: const Icon(Icons.notifications_outlined, size: 22),
             color: Colors.grey[600],
@@ -66,35 +71,38 @@ class _KitchenScreenState extends State<KitchenScreen> {
     final tabNames = ['Schedule', 'Live Orders', 'Shelf Life Items'];
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-      child: Row(
-        children: [
-          ...List.generate(tabNames.length, (i) {
-            final active = i == _tab;
-            return Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: GestureDetector(
-                onTap: () => setState(() => _tab = i),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
-                  decoration: BoxDecoration(
-                    color: active ? AppColors.dark : Colors.transparent,
-                    borderRadius: BorderRadius.circular(20),
-                    border: active
-                        ? null
-                        : Border.all(color: Colors.grey.shade300),
-                  ),
-                  child: Text(
-                    tabNames[i],
-                    style: active ? AppStyles.tabActive : AppStyles.tabInactive,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            ...List.generate(tabNames.length, (i) {
+              final active = i == _tab;
+              return Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: GestureDetector(
+                  onTap: () => setState(() => _tab = i),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+                    decoration: BoxDecoration(
+                      color: active ? AppColors.dark : Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                      border: active
+                          ? null
+                          : Border.all(color: Colors.grey.shade300),
+                    ),
+                    child: Text(
+                      tabNames[i],
+                      style: active ? AppStyles.tabActive : AppStyles.tabInactive,
+                    ),
                   ),
                 ),
-              ),
-            );
-          }),
-          const Spacer(),
-          Icon(Icons.more_horiz, color: Colors.grey[500], size: 20),
-        ],
+              );
+            }),
+            const SizedBox(width: 16),
+            Icon(Icons.more_horiz, color: Colors.grey[500], size: 20),
+          ],
+        ),
       ),
     );
   }

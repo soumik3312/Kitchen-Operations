@@ -36,7 +36,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _idx = 3; // kitchen operation is default active
+  int _idx = 3;
 
   @override
   Widget build(BuildContext context) {

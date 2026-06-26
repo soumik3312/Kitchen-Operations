@@ -76,11 +76,9 @@ class _ShelfLifeTabState extends State<ShelfLifeTab> {
     }
   }
 
-  // Prepare tab - full shelf life table with days countdown
   Widget _buildPrepareTab() {
     return Column(
       children: [
-        // scrollable table since many columns
         Expanded(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -172,12 +170,17 @@ class _ShelfLifeTabState extends State<ShelfLifeTab> {
     );
   }
 
-  // Available tab
   Widget _buildAvailableTab() {
     return Column(
       children: [
-        // headers
-        Padding(
+        Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              width: 450,
+              child: Column(
+                children: [
+                  Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
           child: Row(
             children: const [
@@ -215,10 +218,14 @@ class _ShelfLifeTabState extends State<ShelfLifeTab> {
                 ),
               );
             },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        // edit button
-        Padding(
+      ),
+      Padding(
           padding: const EdgeInsets.fromLTRB(16, 6, 16, 14),
           child: Align(
             alignment: Alignment.bottomLeft,
@@ -237,12 +244,17 @@ class _ShelfLifeTabState extends State<ShelfLifeTab> {
     );
   }
 
-  // Required tab - with editable quantity fields
   Widget _buildRequiredTab() {
     return Column(
       children: [
-        // headers
-        Padding(
+        Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              width: 450,
+              child: Column(
+                children: [
+                  Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
           child: Row(
             children: const [
@@ -267,7 +279,6 @@ class _ShelfLifeTabState extends State<ShelfLifeTab> {
                     Expanded(
                       child: Text(ing.name, style: AppStyles.tableCell),
                     ),
-                    // quantity input
                     SizedBox(
                       width: 50,
                       height: 34,
@@ -292,7 +303,6 @@ class _ShelfLifeTabState extends State<ShelfLifeTab> {
                       ),
                     ),
                     const SizedBox(width: 4),
-                    // unit pill
                     Container(
                       height: 34,
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -312,10 +322,14 @@ class _ShelfLifeTabState extends State<ShelfLifeTab> {
                 ),
               );
             },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        // save button
-        Padding(
+      ),
+      Padding(
           padding: const EdgeInsets.fromLTRB(16, 6, 16, 14),
           child: Align(
             alignment: Alignment.centerRight,
